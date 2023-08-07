@@ -1,0 +1,33 @@
+{% load django_htmx %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Website</title>
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+
+    {% if editable %}
+        <script src="{% static 'js/medium-editor.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/medium-editor.css' %}">
+        <link rel="stylesheet" href="{% static 'css/themes/default.css' %}">
+    {% endif %}
+
+    {% django_htmx_script %}
+</head>
+<body>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+<script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}'; //insert csrf token when performing AJAX request
+    })
+</script>
+</body>
+</html>

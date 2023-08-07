@@ -1,0 +1,30 @@
+{% extends "_base.html" %}
+
+
+{% block content %}
+    <h1>Home</h1>
+    <p class="lead">Welcome to the home page!</p>
+    <p>Here's a link to the <a href="{% url 'about' %}">about</a> page.</p>
+
+    <div class="editable ew_main">
+        {{ page.content.ew_main|safe }}
+    </div>
+
+    <h3>This text is NOT editable!</h3>
+
+    <div class="editable ew_footer">
+        {{ page.content.ew_footer|safe }}
+    </div>
+
+    {% if editable %}
+        <script type="application/javascript" src="static/js/helpers.js"></script>
+
+        <button onclick="saveAllEditables('home')">Save All</button>
+        <button onclick="location.reload()">Cancel</button>
+
+        <div id="feedback"></div>
+        
+    {% endif %}
+
+{% endblock %}
+

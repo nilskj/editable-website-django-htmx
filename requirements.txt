@@ -1,0 +1,9 @@
+asgiref==3.7.2
+bleach==6.0.0
+Django==4.2.4
+django-htmx==1.16.0
+django-prose==1.2.2
+six==1.16.0
+sqlparse==0.4.4
+typing_extensions==4.7.1
+webencodings==0.5.1
